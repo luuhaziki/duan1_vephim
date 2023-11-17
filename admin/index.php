@@ -65,9 +65,12 @@ switch ($action) {
             $target = "../public/upload/" . $filename;
             move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
-            $ok = insert__phim($_POST['tenphim'],$filename,$_POST['date'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            $ma_phim = insert__phim($_POST['tenphim'],$filename,$_POST['date'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            foreach ($_POST['lich_chieu'] as $lichChieu){
+                addLichChieu($ma_phim,$lichChieu);
+            }
             
-            header('location: index.php?action=listProduct');
+//            header('location: index.php?action=listProduct');
             die;
         }
         include 'product/addProduct.php';
@@ -107,13 +110,14 @@ switch ($action) {
     case 'editProduct':
         if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $idProduct = $_GET['id_product'];
+            $lichChieu=allLichChieu($idProduct);
             // Lấy ra 1 sản phẩm edit theo id
             $productInfo = selectIdproduct($idProduct);
         } else {
             $idProduct = "";
             $productInfo = "";
         }
-
+        $filename='';
         if (isset($_POST['updatePro'])) {
             $oldImage = $_POST['oldImage'];
 
@@ -126,6 +130,29 @@ switch ($action) {
             }
 
             updateProduct($_POST['id'],$_POST['tenphim'],$filename ? $filename : $oldImage,$_POST['date'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            $maSuatChieu=$_POST['ma_suat_chieu'];
+            $suatChieu=$_POST['lich_chieu'];
+            $length=9999;
+//            echo "<pre>";
+//            print_r($_POST);
+//            echo "</pre>";
+
+            for ($i = 0; $i < $length; $i++) {
+                //nếu cả 2 tồn tại update
+                if (isset($maSuatChieu[$i]) && isset($suatChieu[$i])) {
+                    updateLichChieu($maSuatChieu[$i],$suatChieu[$i]);
+                }
+                if (!isset($maSuatChieu[$i]) && isset($suatChieu[$i])) {
+                    addLichChieu($_POST['id'],$suatChieu[$i]);
+                    $length=count($suatChieu);
+                }
+                if(!isset($suatChieu[$i])&&isset($maSuatChieu[$i])) {
+                    deleteLichChieu($maSuatChieu[$i]);
+                    $length=count($maSuatChieu);
+                }
+
+
+            }
             header('location: index.php?action=listProduct');
             die;
         }
