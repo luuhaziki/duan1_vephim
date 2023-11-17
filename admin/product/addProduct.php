@@ -50,15 +50,15 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <form onsubmit="return checkFormSubmit()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Tên phim</label>
-                        <input type="text" name="namePro" class="form-control">
+                        <input type="text" name="tenphim" class="form-control">
                         <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple accept="image/*">
+                        <input type="file" id="imageInput" class="upFile form-control" name="image">
                     </div>
                     <div class="product__images">
 
@@ -74,63 +74,28 @@
                             <?php
                                 foreach($listCategory as $key) {
                                     ?>
-                                        <option value="<?= $key['category_id'] ?>"><?= $key['category_name'] ?></option>
+                                        <option value="<?= $key['ma_theloai'] ?>"><?= $key['ten_theloai'] ?></option>
                                     <?php
                                 }
                             ?>
                         </select>
                     </div>
-                    <div class="title-text fw-semibold">Phân loại</div>
-                    <div class="form-group" id="listVariant">
-                        <div class="variant">
-                            <label for="" class="form-label">Màu sắc</label>
-                            <input class="add_vari" type="text" name="color[]">
-                            <label for="" class="form-label mg_lr">Size</label>
-                            <input class="add_vari" type="text" name="size[]">
-                            <label for="" class="form-label mg_lr">Số lượng</label>
-                            <input class="add_vari" type="text" name="amount[]">
-                        </div>
+                    <div class="form-group">
+                        <label for="" class="form-label">Đạo diễn</label>
+                        <input type="text" class="form-control" name="daodien">
+                        <small></small>
                     </div>
                     <div class="form-group">
-                        <input class="btn btn-success addVariant" type="button" value="Thêm phân loại">
+                        <label for="" class="form-label">Thời lượng phim</label>
+                        <input type="text" class="form-control" name="thoigian">
+                        <small></small>
+                    </div>
+                    <div class="form-group">
                         <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
                         <a href="index.php?action=listCus" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>
-            <script>
-                function checkFormSubmit(){
-                    let status=true;
-                    let formGRS=document.querySelectorAll('.form-group');
-                    formGRS.forEach(function (formGR,index){
-                        let ip=formGR.querySelector('input[type=text]');
-                        if(ip&&index<6){
-                            if(ip.value===''){
-                                ip.nextElementSibling.innerHTML='Không được để trống';
-                                status=false;
-                            }else {
-                                ip.nextElementSibling.innerHTML='';
-                            }
-                        }
-                    });
-                    return status
-                }
-                let status=true;
-                let formGRS=document.querySelectorAll('.form-group');
-                formGRS.forEach(function (formGR,index){
-                    let ip=formGR.querySelector('input[type=text]');
-                    if(ip&&index<6){
-                        ip.onblur=function (e){
-                            if(ip.value===''){
-                                ip.nextElementSibling.innerHTML='Không được để trống';
-                            }else {
-                                ip.nextElementSibling.innerHTML='';
-                            }
-                        }
-                    }
-                });
-            </script>
-
         </div>
     </main>
     <!-- MAIN -->

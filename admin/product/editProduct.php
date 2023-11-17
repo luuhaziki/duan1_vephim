@@ -1,8 +1,3 @@
-<style>
-    .form-group>span{
-        color: red;
-    }
-</style>
 <!-- CONTENT -->
 <section id="content">
     <!-- NAVBAR -->
@@ -31,14 +26,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý sản phẩm</h1>
+                <h1>Quản lý phim</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="">Danh sách sản phẩm</a>
+                        <a href="">Danh sách phim</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Sửa sản phẩm</a>
+                        <a class="active" href="#">Thêm phim</a>
                     </li>
                 </ul>
             </div>
@@ -51,148 +46,58 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Sửa sản phẩm</h3>
+                    <h3>Thêm phim</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <form onsubmit="return checkFormSubmit()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
-
-                    <input type="hidden" name="id" value="<?= $productInfo['product_id'] ?>">
-                    
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?= $productInfo['ma_phim'] ?>">
                     <div class="form-group">
-                        <label for="" class="form-label">Tên</label>
-                        <input type="text" name="namePro" value="<?= $productInfo['product_name'] ?>" class="form-control">
-                        <span></span>
+                        <label for="" class="form-label">Tên phim</label>
+                        <input type="text" name="tenphim" value="<?= $productInfo['ten_phim'] ?>" class="form-control">
+                        <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple accept="image/*">
-                        <!--  -->
-                        <input type="hidden" width="1000px" id="oldImage" name="oldImage" value="<?= $productInfo['images'] ?>">
-                        <!--  -->
-                        <div class="product__images">
-                            <?php
-                                foreach(explode(",", $productInfo['images']) as $valueImage) {
-                                    if($productInfo['images'] !== "") {
-                                        ?>
-                                            <div class="ab_ic">
-                                                <button type="button" class="lb_lg"><i class="fa-solid fa-xmark"></i></button>
-                                                <img src="../public/upload/image/product/<?= $valueImage ?>" alt="">
-                                            </div>
-                                        <?php
-                                    } else {
-
-                                    }
-                                }
-                            ?>
-                        </div>
+                        <input type="file" id="imageInput" class="upFile form-control" name="image">
+                        <input type="hidden" id="imageInput" class="upFile form-control" value="<?= $productInfo['image_phim'] ?>" name="oldImage">
+                    </div>
+                    <div class="product__images">
+                        
                     </div>
                     <div class="form-group">
-                        <label for="" class="form-label">Giá sản phẩm</label>
-                        <input type="text" class="form-control" value="<?= $productInfo['price'] ?>" name="pricePro">
-                        <span></span>
+                        <label for="" class="form-label">Ngày phát hành</label>
+                        <input type="date" class="form-control" name="date" value="<?= $productInfo['ngay_phat_hanh'] ?>">
+                        <small></small>
                     </div>
                     <div class="form-group">
-                        <label for="" class="form-label">Giảm giá</label>
-                        <input type="text" class="form-control" value="<?= $productInfo['sale'] ?>" name="sale">
-                        <span></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="form-label">Sản phẩm dành cho</label>
-                        <input type="text" class="form-control" name="product_gender" value="<?= $productInfo['product_gender'] ?>">
-                        <span></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="form-label">Danh mục</label>
+                        <label for="" class="form-label">Thể loại</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php
                                 foreach($listCategory as $key) {
-                                    if($key['category_id'] == $key['category_id']) {
-                                        ?>
-                                            <option value="<?= $key['category_id'] ?>" selected><?= $key['category_name'] ?></option>
-                                        <?php
-                                    } else {
-                                        ?>
-                                            <option value="<?= $key['category_id'] ?>"><?= $key['category_name'] ?></option>
-                                        <?php
-                                    }
+                                    ?>
+                                        <option value="<?= $key['ma_theloai'] ?>" <?= $key['ma_theloai'] == $productInfo['ma_theloai'] ? 'selected' : '' ?>><?= $key['ten_theloai'] ?></option>
+                                    <?php                    
                                 }
                             ?>
                         </select>
                     </div>
-                    <div class="title-text fw-semibold">Phân loại</div>
-                    <div class="form-group" id="listVariant">
-                        <?php 
-                            if (!empty($listVariations)) {
-                                ?>
-                                    <div class="variations">
-                                        <?php
-                                            $count=0;
-                                            foreach ($listVariations as $variant) {
-                                                $count++;
-                                                ?>
-                                                <input type="hidden" name="variant_id[]" value="<?= $variant['variant_id'] ?>">
-                                                <div class="variant">
-
-                                                    <label for="" class="form-label">Màu sắc</label>
-                                                    <input class="add_vari" type="text" value="<?= $variant['color'] ?>" name="color[]">
-                                                    <label for="" class="form-label mg_lr">Size</label>
-                                                    <input class="add_vari" type="text" value="<?= $variant['size'] ?>" name="size[]">
-                                                    <label for="" class="form-label mg_lr">Số lượng</label>
-                                                    <input class="add_vari" type="text" value="<?= $variant['amount'] ?>" name="amount[]">
-                                                    <?php
-                                                    if ($count>=2){
-                                                        echo '<input type="button" value="xoá" onclick="removeElement(this)" class="btn btn-outline-danger btn-sm" style="margin-left: 8px;">';
-                                                    }
-                                                    ?>
-                                                </div>
-                                                <?php
-                                            }
-                                        ?>
-                                    </div>
-                                <?php
-                            }
-                        ?>
+                    <div class="form-group">
+                        <label for="" class="form-label">Đạo diễn</label>
+                        <input type="text" class="form-control" value="<?= $productInfo['dao_dien'] ?>" name="daodien">
+                        <small></small>
                     </div>
                     <div class="form-group">
-                        <input class="btn btn-success addVariant" type="button" value="Thêm phân loại">
-                        <input class="btn btn-primary" type="submit" name="updatePro" value="Cập nhật sản phẩm">
+                        <label for="" class="form-label">Thời lượng phim</label>
+                        <input type="text" class="form-control" value="<?= $productInfo['thoi_luong_phut'] ?>" name="thoigian">
+                        <small></small>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary" type="submit" name="updatePro" value="Cập nhật phim">
                         <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>
-            <script>
-                function checkFormSubmit(){
-                    let status=true;
-                    let formGRS=document.querySelectorAll('.form-group');
-                    formGRS.forEach(function (formGR,index){
-                        let ip=formGR.querySelector('input[type=text]');
-                        if(ip&&index<6){
-                            if(ip.value===''){
-                                ip.nextElementSibling.innerHTML='Không được để trống';
-                                status=false;
-                            }else {
-                                ip.nextElementSibling.innerHTML='';
-                            }
-                        }
-                    });
-                    return status
-                }
-                let status=true;
-                let formGRS=document.querySelectorAll('.form-group');
-                formGRS.forEach(function (formGR,index){
-                    let ip=formGR.querySelector('input[type=text]');
-                    if(ip&&index<6){
-                        ip.onblur=function (e){
-                            if(ip.value===''){
-                                ip.nextElementSibling.innerHTML='Không được để trống';
-                            }else {
-                                ip.nextElementSibling.innerHTML='';
-                            }
-                        }
-                    }
-                });
-            </script>
         </div>
     </main>
     <!-- MAIN -->

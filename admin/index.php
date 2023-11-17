@@ -1,13 +1,14 @@
 <?php
 include '../models/pdo.php';
 include '../models/adminModel/categoryModel.php';
+include '../models/adminModel/phimModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
 include 'partitions/header.php';
 include 'partitions/sideBar.php';
 
-
+$listCategory = listDanhmuc();
 
 switch ($action) {
     case 'dashboard':
@@ -17,12 +18,12 @@ switch ($action) {
 
     // list
     case 'listProduct':
-        
+        $listProduct = listProduct();
         include 'product/listProduct.php';
         break;
 
     case 'listCategory':
-        $listCategory = listDanhmuc();
+        
         include 'category/listCategory.php';
         break;
 
@@ -54,38 +55,14 @@ switch ($action) {
     //add
     case 'addProduct':
         if (isset($_POST['addProduct'])) {
-            $namePro = $_POST['namePro'];
-            $image = $_FILES['image']['name'];
-            $pricePro = $_POST['pricePro'];
-            $sale = $_POST['sale'];
-            $selectCategory = $_POST['selectCategory'];
-            $color = $_POST['color'];
-            $size = $_POST['size'];
-            $amount = $_POST['amount'];
-            $product_gender = $_POST['product_gender'];
+            $filename = time() . basename($_FILES['image']['name']);
+            $target = "../public/upload/" . $filename;
+            move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
-            insert__phim($tenphim,$image,$date,$theloai,$daodien,$thoigian);
-
-            $uploadedImages = array();
-
-            foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
-                $filename = time() . basename($_FILES['image']['name'][$key]);
-                $target = "../public/upload/image/product/" . $filename;
-
-                if (move_uploaded_file($tmp_name, $target)) {
-                    $uploadedImages[] = $filename;
-                }
-            }
-
-            $filename = implode(",", $uploadedImages);
-
-            // $product_id = addProduct($namePro, $pricePro, $sale, $filename, $product_gender, $selectCategory);
-
-            for ($i = 0; $i < count($color); $i++) {
-                // addVation($product_id, $color[$i], $size[$i], $amount[$i]);
-            }
-
+            $ok = insert__phim($_POST['tenphim'],$filename,$_POST['date'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            
             header('location: index.php?action=listProduct');
+            die;
         }
         include 'product/addProduct.php';
         break;
@@ -124,75 +101,27 @@ switch ($action) {
     case 'editProduct':
         if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $idProduct = $_GET['id_product'];
-
             // Lấy ra 1 sản phẩm edit theo id
-            // $productInfo = selectIdproduct($idProduct);
-
-            // Lấy danh sách biến thể của sản phẩm cụ thể theo id
-            // $listVariations = getVariationsByProductId($idProduct);
+            $productInfo = selectIdproduct($idProduct);
         } else {
             $idProduct = "";
             $productInfo = "";
-            $listVariations = array();
         }
 
         if (isset($_POST['updatePro'])) {
-            $id = $_POST['id'];
-            $variant_id = $_POST['variant_id'];
-            $namePro = $_POST['namePro'];
-            $pricePro = $_POST['pricePro'];
-            $sale = $_POST['sale'];
-            $selectCategory = $_POST['selectCategory'];
-            $color = $_POST['color'];
-            $size = $_POST['size'];
-            $amount = $_POST['amount'];
-            $product_gender = $_POST['product_gender'];
             $oldImage = $_POST['oldImage'];
 
             if ($_FILES['image']['name']) {
-                $uploadedImages = array();
 
-                foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
-                    $filename = time() . basename($_FILES['image']['name'][$key]);
-                    $target = "../public/upload/image/product/" . $filename;
-
-                    if (move_uploaded_file($tmp_name, $target)) {
-                        $uploadedImages[] = $filename;
-                    }
-                }
-
-                $filename = implode(",", $uploadedImages);
+                $filename = time() . basename($_FILES['image']['name']);
+                $target = "../public/upload/" . $filename;
+                move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
             }
 
-            if ($oldImage !== "" && $filename !== "") {
-                $oldImage = $oldImage . ",";
-            }
-
-            // $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory);
-
-            $length=9999;
-
-            // for ($i = 0; $i < $length; $i++) {
-            //     //nếu cả 2 tồn tại
-            //     if (isset($variant_id[$i]) && isset($color[$i])) {
-            //         updateVation($variant_id[$i], $color[$i], $size[$i], $amount[$i]);
-            //     }
-
-            //     if (!isset($variant_id[$i]) && isset($color[$i])) {
-            //         addVation($id, $color[$i], $size[$i], $amount[$i]);
-            //         $length=count($color);
-            //     }
-                
-            //     if(!isset($color[$i])&&isset($variant_id[$i])) {
-            //         deleteVation($variant_id[$i]);
-            //         $length=count($variant_id);
-            //     }
-
-
-            // }
-
+            updateProduct($_POST['id'],$_POST['tenphim'],$filename ? $filename : $oldImage,$_POST['date'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
             header('location: index.php?action=listProduct');
+            die;
         }
 
         include 'product/editProduct.php';
@@ -251,28 +180,17 @@ switch ($action) {
 
 
     case 'deleteProduct':
-        // if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
-        //     $productId = $_GET['id_product'];
-
-        //     $selectImage = selectIdproduct($productId);
-
-        //     $selectImage = explode(",", $selectImage['images']);
-
-        //     // echo "<pre>";
-        //     // print_r($selectImage);
-
-
-        //     foreach ($selectImage as $valueTarget) {
-        //         $target = "../public/upload/image/product/" . $valueTarget;
-        //         unlink($target);
-        //     }
-
-        //     deleteProduct($productId);
-        //     header('location: index.php?action=listProduct');
-        // } else {
-        //     $productId = "";
-        // }
-
+        if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
+            $idProduct = $_GET['id_product'];
+            // Lấy ra 1 sản phẩm edit theo id
+        } else {
+            $idProduct = "";
+        }
+        
+        
+        deleteProduct($idProduct);
+        header('location: index.php?action=listProduct');
+        break;
     case 'deleteCategory':
         if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
             $categoryId = $_GET['category_id'];

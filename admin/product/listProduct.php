@@ -57,13 +57,13 @@
                     <thead>
                         <tr class="tr_th">
                             <th>STT</th>
+                            <th>Tên phim</th>
+                            <th>Thể loại</th>
                             <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Danh mục</th>
-                            <th>Ngày đăng</th>
+                            <th>Ngày phát hành</th>
+                            <th>Đạo diễn</th>
+                            <th>Thời lượng phim</th>
                             <th>Thao tác</th>
-                            <th>Chi tiết</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,22 +74,20 @@
                                 ?>
                                     <tr class="tr_td">
                                         <td><?= $keysanpham + 1 ?></td>
+                                        <td class="name__product__admin"><?= $valueSanpham['ten_phim'] ?></td>
+                                        <td><?= $valueSanpham['ten_theloai'] ?></td>
                                         <td class="img__productadd">
-                                            <img src="../public/upload/image/product/<?= explode(",", $valueSanpham['images'])[0] ?>" alt="">
+                                            <img src="../public/upload/<?= $valueSanpham['image_phim'] ?>" alt="">
                                         </td>
-                                        <td class="name__product__admin"><?= $valueSanpham['product_name'] ?></td>
-                                        <td class="name__product__admin" style="color: #ff8080;font-weight: 500;width: 150px!important;"><?= $valueSanpham['price'] ?></td>
-                                        <td><?= $valueSanpham['category_name'] ?></td>
-                                        <td><?= date("d-m-Y H:i:s", strtotime($valueSanpham['create_at'])) ?></td>
+                                        <td><?= date("d-m-Y", strtotime($valueSanpham['ngay_phat_hanh'])) ?></td>
+                                        <td><?= $valueSanpham['dao_dien'] ?></td>
+                                        <td><?= $valueSanpham['thoi_luong_phut'] ?></td>
                                         <td>
-                                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct&id_product=<?= $valueSanpham['product_id'] ?>">Sửa</a>
-                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $valueSanpham['product_id'] ?>">Xoá</a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-primary btn-sm" href="../index.php?action=chi-tiet-sanpham&detail_product=<?=$valueSanpham['product_id']?>">Xem</a>
+                                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct&id_product=<?= $valueSanpham['ma_phim'] ?>">Sửa</a>
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $valueSanpham['ma_phim'] ?>">Xoá</a>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="exampleModal<?= $valueSanpham['product_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal<?= $valueSanpham['ma_phim'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -97,11 +95,11 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Bạn có muốn xóa sản phẩm: <?= $valueSanpham['product_name'] ?>
+                                                Bạn có muốn xóa sản phẩm: <?= $valueSanpham['ten_phim'] ?>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                <a class="btn btn-primary" href="index.php?action=deleteProduct&id_product=<?= $valueSanpham['product_id'] ?>">Xoá</a>
+                                                <a class="btn btn-primary" href="index.php?action=deleteProduct&id_product=<?= $valueSanpham['ma_phim'] ?>">Xoá</a>
                                             </div>
                                             </div>
                                         </div>

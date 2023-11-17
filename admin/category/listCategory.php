@@ -56,7 +56,6 @@
                 <table class="tbl__tab">
                     <thead>
                         <tr class="tr_th">
-                            <th></th>
                             <th>STT</th>
                             <th>Tên danh mục</th>
                             <th>Thao tác</th>
@@ -68,7 +67,6 @@
 
                                 ?>
                                     <tr class="tr_td">
-                                        <td><input type="checkbox"></td>
                                         <td><?= $keycategory + 1 ?></td>
                                         <td><?= $category['ten_theloai'] ?></td>
                                         <td>
