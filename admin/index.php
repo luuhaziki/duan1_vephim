@@ -2,6 +2,8 @@
 include '../models/pdo.php';
 include '../models/adminModel/categoryModel.php';
 include '../models/adminModel/phimModel.php';
+include '../models/adminModel/dashboardModel.php';
+include '../models/adminModel/orderModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -12,6 +14,10 @@ $listCategory = listDanhmuc();
 
 switch ($action) {
     case 'dashboard':
+        $day=3;
+        $totalPrice=doanhThuGanDay($day);
+        $donHangGanDay=donHangGanDay($day);
+        $totalCustomer=totalCustomer();
 
         include 'dashboard.php';
         break;
@@ -28,7 +34,7 @@ switch ($action) {
         break;
 
     case 'listOrder':
-      
+        $allOrder=allOrder();
         include 'order/listOrder.php';
         break;
 

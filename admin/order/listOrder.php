@@ -60,40 +60,27 @@
                     <tr>
                         <th style="padding-right: 20px">STT</th>
                         <th>Người đặt hàng</th>
-                        <th>Người nhận</th>
+                        <th>Giá</th>
+                        <th>Số phòng</th>
+                        <th>Số ghế</th>
+                        <th>Số vé</th>
                         <th>Tổng cộng</th>
-                        <th>Ngày đặt hàng</th>
-                        <th>Thanh toán</th>
-                        <th>Vận chuyển</th>
-                        <th>Chi tiết</th>
+                        <th>Ngày đặt</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($listOrder as $key => $value): ?>
+                    <?php foreach ($allOrder as $key=>$value):?>
                         <tr>
-                            <td style="margin-top: 45px"><?= $key + 1 ?></td>
-                            <td>
-                                <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
-                                <span><?= $value['fullName'] ?></span>
-                            </td>
-                            <td>
-                                <p><i><?=$value['receiver_name']?></i></p>
-                                <p style="width: 200px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
-                                <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
-                            </td>
-                            <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
-                            <td><?= $value['create_at'] ?></td>
-                            <td><span style="cursor: pointer" onclick="toggleStatus(this,'togglePayment','<?=$value['order_id']?>')"
-                                      class="status <?= $value['payment_status'] ?>"><?= $value['payment_status'] ?></span>
-                            </td>
-                            <td><span style="cursor: pointer" onclick="toggleStatus(this,'toggleShipping','<?=$value['order_id']?>')"
-                                      class="status <?= $value['shipping_status'] ?>"><?= $value['shipping_status'] ?></span>
-                            </td>
-                            <td><a class="btn btn-success btn-sm"
-                                   href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
-                                    tiết</a></td>
+                            <td style="margin-top: 7px"><?=$key+1?></td>
+                            <td><?=$value['ten_dang_nhap']?></td>
+                            <td style="color: #ff7d7d;font-weight: 500;"><?=$value['price']?></td>
+                            <td><?=$value['so_phong']?></td>
+                            <td><?=$value['so_ghe']?></td>
+                            <td><?=$value['so_ve']?></td>
+                            <td><?=$value['tong_cong']?></td>
+                            <td><span style="cursor: pointer"><?=$value['ngay_dat_ve']?></span></td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach;?>
                     </tbody>
                 </table>
             </div>

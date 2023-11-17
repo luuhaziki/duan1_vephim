@@ -110,21 +110,21 @@
             <li>
                 <i class='bx bxs-calendar-check'></i>
                 <span class="text">
-						<h3>20</h3>
+						<h3><?=count($donHangGanDay)?></h3>
 						<p>Đơn đặt hàng mới</p>
 					</span>
             </li>
             <li>
                 <i class='bx bxs-group'></i>
                 <span class="text">
-						<h3>2</h3>
+						<h3><?=$totalCustomer?></h3>
 						<p>Khách hàng</p>
 					</span>
             </li>
             <li>
                 <i class='bx bxs-dollar-circle'></i>
                 <span class="text">
-						<h3>20.000</h3>
+						<h3><?=number_format($totalPrice,0,',','.')?></h3>
 						<p>Tổng doanh thu</p>
 					</span>
             </li>
@@ -143,34 +143,27 @@
                     <tr>
                         <th style="padding-right: 20px">STT</th>
                         <th>Người đặt hàng</th>
+                        <th>Giá</th>
+                        <th>Số phòng</th>
+                        <th>Số ghế</th>
+                        <th>Số vé</th>
                         <th>Tổng cộng</th>
-                        <th>Ngày đặt hàng</th>
-                        <th>Thanh toán</th>
-                        <th>Vận chuyển</th>
-                        <th>Chi tiết</th>
+                        <th>Ngày đặt</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($donHangGanDay as $key=>$value):?>
                         <tr>
-                            <td style="margin-top: 7px"></td>
-                            <td>
-                                <img src="../public/upload/image/user/" alt="">
-                                <span>admin</span>
-                            </td>
-                            <td style="color: #ff7d7d;font-weight: 500;">20000</td>
-                            <td>20/11/2002</td>
-                            <td><span style="cursor: pointer"
-                                onclick="toggleStatus(this,'togglePayment','')"
-                                class="status">OK</span>
-                            </td>
-                            <td><span style="cursor: pointer"
-                                        onclick="toggleStatus(this,'toggleShipping','')"
-                                        class="status">OK</span>
-                            </td>
-                            <td><a class="btn btn-success btn-sm"
-                                    href="index.php?action=listOrder_detail&order_id=">Chi
-                                    tiết</a></td>
+                            <td style="margin-top: 7px"><?=$key+1?></td>
+                            <td><?=$value['ten_dang_nhap']?></td>
+                            <td style="color: #ff7d7d;font-weight: 500;"><?=$value['price']?></td>
+                            <td><?=$value['so_phong']?></td>
+                            <td><?=$value['so_ghe']?></td>
+                            <td><?=$value['so_ve']?></td>
+                            <td><?=$value['tong_cong']?></td>
+                            <td><span style="cursor: pointer"><?=$value['ngay_dat_ve']?></span></td>
                         </tr>
+                    <?php endforeach;?>
                     </tbody>
                 </table>
             </div>
