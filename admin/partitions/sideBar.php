@@ -14,13 +14,13 @@
         <li class="<?=$action=='listProduct'|| $action=='addProduct' || $action=='editProduct' ?'active':''?>">
             <a href="index.php?action=listProduct">
                 <i class='bx bxl-product-hunt'></i>
-                <span class="text">Quản lí sản phẩm</span>
+                <span class="text">Quản lí phim</span>
             </a>
         </li>
         <li class="<?=$action=='listCategory' || $action=='addCategory' || $action=='editCategory' ?'active':''?>">
             <a href="index.php?action=listCategory">
                 <i class='bx bxs-doughnut-chart'></i>
-                <span class="text">Quản lí danh mục</span>
+                <span class="text">Quản lí thể loại</span>
             </a>
         </li>
         <li class="<?=$action=='listCustomer' || $action=='addCustomer' || $action=='editCustomer' ?'active':''?>">
@@ -32,13 +32,7 @@
         <li class="<?=$action=='listOrder' || $action=='listOrder_detail' ?'active':''?>">
             <a href="index.php?action=listOrder">
                 <i class='bx bxs-shopping-bag-alt'></i>
-                <span class="text">Quản lí đơn hàng</span>
-            </a>
-        </li>
-        <li class="<?=$action=='listComment' || $action == 'listComment_statistical' ?'active':''?>">
-            <a href="index.php?action=listComment_statistical">
-                <i class='bx bxs-comment'></i>
-                <span class="text">Quản lí bình luận</span>
+                <span class="text">Quản lí đặt vé</span>
             </a>
         </li>
     </ul>

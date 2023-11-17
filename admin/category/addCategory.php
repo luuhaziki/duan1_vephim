@@ -3,7 +3,7 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Danh mục</a>
+        <a href="#" class="nav-link">Thể loại</a>
         <form action="#">
             <div class="form-input">
                 <input type="search" placeholder="Tìm kiếm">
@@ -26,14 +26,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý danh mục</h1>
+                <h1>Quản lý thể loại</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="">Danh sách danh mục</a>
+                        <a href="">Danh sách thể loại</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Thêm danh mục</a>
+                        <a class="active" href="#">Thêm thể loại</a>
                     </li>
                 </ul>
             </div>
@@ -46,7 +46,7 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Thêm danh mục</h3>
+                    <h3>Thêm thể loại</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
@@ -54,16 +54,11 @@
                 <form action="index.php?action=addCategory" enctype="multipart/form-data" onsubmit="return sendCategory()" method="post">
                     <div class="form__cateadd">
                         <div class="form-group">
-                            <label class="form-label">Tên danh mục</label>
-                            <input type="text" placeholder="Nhập tên danh mục" name="danhmuc" class="form-control danhmuc">
-                        </div>
-                        <div class="error error_category"></div>
-                        <div class="form-group cate_img">
-                            <label class="form-label">Ảnh danh mục</label>
-                            <input type="file" name="imageCate" class="form-control danhmuc" multiple>
+                            <label class="form-label">Tên thể loại</label>
+                            <input type="text" placeholder="Nhập tên thể loại" name="theloai" class="form-control danhmuc">
                         </div>
                         <div class="form-group mg_tb">
-                            <input class="btn btn-primary" type="submit" name="addcategory" value="Thêm danh mục">
+                            <input class="btn btn-primary" type="submit" name="addcategory" value="Thêm thể loại">
                             <a href="index.php?action=listCategory" class="btn btn-dark">Danh sách</a>
                         </div>
                     </div>

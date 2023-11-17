@@ -110,21 +110,21 @@
             <li>
                 <i class='bx bxs-calendar-check'></i>
                 <span class="text">
-						<h3><?= count($newOrder) ?></h3>
+						<h3>20</h3>
 						<p>Đơn đặt hàng mới</p>
 					</span>
             </li>
             <li>
                 <i class='bx bxs-group'></i>
                 <span class="text">
-						<h3><?= $totalUser['total_user'] ?></h3>
+						<h3>2</h3>
 						<p>Khách hàng</p>
 					</span>
             </li>
             <li>
                 <i class='bx bxs-dollar-circle'></i>
                 <span class="text">
-						<h3><?= number_format($totalSell['total_sell'], 0, ',', '.') ?></h3>
+						<h3>20.000</h3>
 						<p>Tổng doanh thu</p>
 					</span>
             </li>
@@ -151,28 +151,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($newOrder as $key => $value): ?>
                         <tr>
-                            <td style="margin-top: 7px"><?= $key + 1 ?></td>
+                            <td style="margin-top: 7px"></td>
                             <td>
-                                <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
-                                <span><?= $value['fullName'] ?></span>
+                                <img src="../public/upload/image/user/" alt="">
+                                <span>admin</span>
                             </td>
-                            <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
-                            <td><?= $value['create_at'] ?></td>
+                            <td style="color: #ff7d7d;font-weight: 500;">20000</td>
+                            <td>20/11/2002</td>
                             <td><span style="cursor: pointer"
-                                      onclick="toggleStatus(this,'togglePayment','<?= $value['order_id'] ?>')"
-                                      class="status <?= $value['payment_status'] ?>"><?= $value['payment_status'] ?></span>
+                                onclick="toggleStatus(this,'togglePayment','')"
+                                class="status">OK</span>
                             </td>
                             <td><span style="cursor: pointer"
-                                      onclick="toggleStatus(this,'toggleShipping','<?= $value['order_id'] ?>')"
-                                      class="status <?= $value['shipping_status'] ?>"><?= $value['shipping_status'] ?></span>
+                                        onclick="toggleStatus(this,'toggleShipping','')"
+                                        class="status">OK</span>
                             </td>
                             <td><a class="btn btn-success btn-sm"
-                                   href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
+                                    href="index.php?action=listOrder_detail&order_id=">Chi
                                     tiết</a></td>
                         </tr>
-                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -183,119 +181,20 @@
                     <i class='bx bx-filter'></i>
                 </div>
                 <ul class="todo-list">
-                    <?php foreach ($todolist as $todo): ?>
-                        <li todoList_id="<?= $todo['todolist_id'] ?>" class="<?= $todo['status'] ?>">
-                            <p contenteditable="true"><?= $todo['content'] ?></p>
-                            <i class='bx bx-dots-vertical-rounded menu_option'>
-                                <ul>
-                                    <li class="toggle_status"><i class="fa-solid fa-arrow-right-arrow-left "></i></li>
-                                    <li class="delete_todolist"><i class="fa-solid fa-trash"></i></li>
-                                </ul>
-                            </i>
-                        </li>
-                    <?php endforeach; ?>
-
+                    <li todoList_id="" class="">
+                        <p contenteditable="true">Content</p>
+                        <i class='bx bx-dots-vertical-rounded menu_option'>
+                            <ul>
+                                <li class="toggle_status"><i class="fa-solid fa-arrow-right-arrow-left "></i></li>
+                                <li class="delete_todolist"><i class="fa-solid fa-trash"></i></li>
+                            </ul>
+                        </i>
+                    </li>
                 </ul>
             </div>
         </div>
     </main>
     <!-- MAIN -->
 </section>
-<script>
-    let xmlHttp = new XMLHttpRequest();
-    let head = document.querySelectorAll(".head")[1];
-    let btnAdd = head.querySelectorAll("i")[0];
-    let btnFilter = head.querySelectorAll("i")[1];
-    let todoList = document.querySelector(".todo-list");
-    btnAdd.onclick = function (e) {
-        let li = document.createElement('li');
-        xmlHttp.onreadystatechange = function (e) {
-            if (this.readyState === 4 && this.status === 200) {
-                li.setAttribute('todoList_id',this.responseText);
-                li.setAttribute('class', 'not-completed');
-                li.innerHTML = `    <p contenteditable="true"></p>
-                                    <i class='bx bx-dots-vertical-rounded menu_option'>
-                                        <ul>
-                                            <li class="toggle_status"><i class="fa-solid fa-arrow-right-arrow-left "></i></li>
-                                            <li class="delete_todolist"><i class="fa-solid fa-trash"></i></li>
-                                        </ul>
-                                    </i>`;
-                CRUD();
-            }
-        }
-        xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=addTodolist`, true);
-        xmlHttp.send();
-
-        todoList.appendChild(li);
-    }
-    CRUD();
-    // ẩn hiện option
-    function CRUD(){
-        let Btn_menuOption = todoList.querySelectorAll('.menu_option');
-        Btn_menuOption.forEach(function (option) {
-            let menu = option.querySelector('ul');
-            let li = menu.querySelectorAll('li');
-
-            document.addEventListener('click', function (e) {
-                if (e.target === option) {
-                    menu.classList.add('show');
-                } else if (e.target !== li[0] && e.target !== li[1]) {
-                    menu.classList.remove('show');
-                }
-            });
-        });
-
-        // xoá content
-        let Btn_deleteTodolist = document.querySelectorAll('.delete_todolist');
-        Btn_deleteTodolist.forEach(function (btn_delete) {
-            btn_delete.onclick = function (e) {
-                let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
-                xmlHttp.onreadystatechange = function (e) {
-                    if (this.readyState === 4 && this.status === 200) {
-                        if (this.responseText === 'success') {
-                            btn_delete.parentElement.parentElement.parentElement.remove();
-                            console.log('remove');
-                        }
-                    }
-                }
-                xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=deleteTodolist&todolist_id=${id}`, true);
-                xmlHttp.send();
-            }
-        });
-        //edit content
-        let paragraphElements = todoList.querySelectorAll('p');
-        paragraphElements.forEach(function (paragraphElement) {
-            paragraphElement.oninput = function () {
-                let id = this.parentElement.getAttribute('todoList_id');
-                let content = this.innerHTML;
-                console.log('edit content');
-                xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=editContentTodolist&content=${content}&todolist_id=${id}`, true);
-                xmlHttp.send();
-            }
-        });
-
-        //thay đổi trạng thái
-        let toggle_status = document.querySelectorAll('.toggle_status');
-        toggle_status.forEach(function (btnToggle) {
-            btnToggle.onclick = function () {
-                let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
-                let status = this.parentElement.parentElement.parentElement.getAttribute('class');
-                xmlHttp.onreadystatechange = function (e) {
-                    if (this.readyState === 4 && this.status === 200) {
-                        if (this.responseText === 'not-completed' || this.responseText === 'completed') {
-                            btnToggle.parentElement.parentElement.parentElement.setAttribute('class', this.responseText);
-                            console.log('toggle status');
-                        }
-                    }
-                }
-                xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=toggleStatus&status=${status}&todolist_id=${id}`, true);
-                xmlHttp.send();
-            }
-        });
-    }
-
-
-
-</script>
 <script src="../js/scriptDashboard.js"></script>
 <!-- CONTENT -->

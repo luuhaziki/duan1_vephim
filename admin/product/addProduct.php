@@ -26,14 +26,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý sản phẩm</h1>
+                <h1>Quản lý phim</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="">Danh sách sản phẩm</a>
+                        <a href="">Danh sách phim</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Thêm sản phẩm</a>
+                        <a class="active" href="#">Thêm phim</a>
                     </li>
                 </ul>
             </div>
@@ -46,13 +46,13 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Thêm sản phẩm</h3>
+                    <h3>Thêm phim</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
                 <form onsubmit="return checkFormSubmit()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="" class="form-label">Tên</label>
+                        <label for="" class="form-label">Tên phim</label>
                         <input type="text" name="namePro" class="form-control">
                         <small></small>
                     </div>
@@ -64,22 +64,12 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="" class="form-label">Giá sản phẩm</label>
-                        <input type="text" class="form-control" name="pricePro">
+                        <label for="" class="form-label">Ngày phát hành</label>
+                        <input type="date" class="form-control" name="date">
                         <small></small>
                     </div>
                     <div class="form-group">
-                        <label for="" class="form-label">Giảm giá</label>
-                        <input type="text" class="form-control" name="sale">
-                        <small></small>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="form-label">Sản phẩm dành cho</label>
-                        <input type="text" class="form-control" name="product_gender">
-                        <small></small>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="form-label">Danh mục</label>
+                        <label for="" class="form-label">Thể loại</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php
                                 foreach($listCategory as $key) {

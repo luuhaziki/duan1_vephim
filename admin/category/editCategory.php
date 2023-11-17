@@ -9,7 +9,7 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Danh mục</a>
+        <a href="#" class="nav-link">Thể loại</a>
         <form action="#">
             <div class="form-input">
                 <input type="search" placeholder="Tìm kiếm">
@@ -32,14 +32,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý danh mục</h1>
+                <h1>Quản lý thể loại</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="">Danh sách danh mục</a>
+                        <a href="">Danh sách thể loại</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Sửa danh mục</a>
+                        <a class="active" href="#">Sửa thể loại</a>
                     </li>
                 </ul>
             </div>
@@ -52,26 +52,20 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Thêm danh mục</h3>
+                    <h3>Thêm thể loại</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
 
-                <form action="index.php?action=editCategory&category_id=<?= $category_id ?>" enctype="multipart/form-data" onsubmit="return sendCategory()" method="post">
+                <form action="index.php?action=editCategory&category_id=<?= $ma_theloai ?>" method="POST">
                     <div class="form__cateadd">
-                        <input type="hidden" name="id" value="<?= $category_id ?>">
+                        <input type="hidden" name="id" value="<?= $ma_theloai ?>">
                         <div class="form-group">
-                            <label class="form-label">Tên danh mục</label>
-                            <input type="text" placeholder="Nhập tên danh mục" value="<?= $category_name ?>" name="danhmuc" class="form-control danhmuc">
-                        </div>
-                        <div class="error error_category"></div>
-                        <div class="form-group cate_img">
-                            <label class="form-label">Ảnh danh mục</label>
-                            <input type="file" name="imageCate" class="form-control danhmuc">
-                            <input type="text" name="oldCate" value="<?= $image_cate ?>" class="form-control danhmuc">
+                            <label class="form-label">Tên thể loại</label>
+                            <input type="text" placeholder="Nhập tên thể loại" value="<?= $ten_theloai ?>" name="theloai" class="form-control danhmuc">
                         </div>
                         <div class="form-group mg_tb">
-                            <input class="btn btn-primary" type="submit" name="updateCate" value="Cập nhật danh mục">
+                            <input class="btn btn-primary" type="submit" name="updateCate" value="Cập nhật thể loại">
                             <a href="index.php?action=listCategory" class="btn btn-dark">Danh sách</a>
                         </div>
                     </div>

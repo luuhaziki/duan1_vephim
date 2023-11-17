@@ -56,9 +56,9 @@
                 <table class="tbl__tab">
                     <thead>
                         <tr class="tr_th">
+                            <th></th>
                             <th>STT</th>
                             <th>Tên danh mục</th>
-                            <th>Ảnh danh mục</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
@@ -68,15 +68,15 @@
 
                                 ?>
                                     <tr class="tr_td">
+                                        <td><input type="checkbox"></td>
                                         <td><?= $keycategory + 1 ?></td>
-                                        <td><?= $category['category_name'] ?></td>
-                                        <td><img src="../public/upload/image/category/<?= $category['image_cate'] ?>" alt=""></td>
+                                        <td><?= $category['ten_theloai'] ?></td>
                                         <td>
-                                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editCategory&category_id=<?= $category['category_id'] ?>">Sửa</a>
-                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $category['category_id'] ?>">Xoá</a>
+                                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editCategory&category_id=<?= $category['ma_theloai'] ?>">Sửa</a>
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $category['ma_theloai'] ?>">Xoá</a>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="exampleModal<?= $category['category_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal<?= $category['ma_theloai'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -84,11 +84,11 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Bạn có muốn xóa danh muc: <?= $category['category_name'] ?>
+                                                Bạn có muốn xóa danh muc: <?= $category['ten_theloai'] ?>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                                <a class="btn btn-primary" href="index.php?action=deleteCategory&category_id=<?= $category['category_id'] ?>">Xoá</a>
+                                                <a class="btn btn-primary" href="index.php?action=deleteCategory&category_id=<?= $category['ma_theloai'] ?>">Xoá</a>
                                             </div>
                                             </div>
                                         </div>
