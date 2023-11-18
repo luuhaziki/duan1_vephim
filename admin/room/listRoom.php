@@ -52,30 +52,28 @@
                     <i class='bx bx-filter'></i>
                 </div>
                 <div class="alert alert-primary add__btn__click">
-                    <a class="btn btn-primary w100hz" href="index.php?action=addCustomer">Thêm phòng chiếu</a>
+                    <a class="btn btn-primary w100hz" href="index.php?action=addRoom">Thêm phòng chiếu</a>
                 </div>
                 <table>
                     <thead>
                     <tr class="tr_th">
                         <th>STT</th>
-                        <th>Tên đăng nhập</th>
-                        <th>Mật khẩu</th>
-                        <th>Email</th>
+                        <th>Tên phòng</th>
+                        <th>Số lượng ghế</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($allCustomer as $keyuser => $user): ?>
+                    <?php foreach ($listRoom as $keyuser => $value): ?>
                         <tr class="tr_td">
                             <td><?= $keyuser + 1 ?></td>
-                            <td><?=$user['ten_dang_nhap']?></td>
-                            <td><?=$user['mat_khau']?></td>
-                            <td><?=$user['email']?></td>
+                            <td><?=$value['ten_phong']?></td>
+                            <td><?=$value['so_luong_ghe']?></td>
                             <td>
-                                <a class="btn btn-outline-success btn-sm" href="index.php?action=editCustomer&ma_nguoi_dung=<?=$user['ma_nguoi_dung']?>">Sửa</a>
-                                <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$user['ma_nguoi_dung']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
+                                <a class="btn btn-outline-success btn-sm" href="index.php?action=editRoom&ma_phong=<?=$value['ma_phong']?>">Sửa</a>
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$value['ma_phong']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
                             </td>
                         </tr>
-                        <div class="modal fade" id="exampleModal<?=$user['ma_nguoi_dung']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleModal<?=$value['ma_phong']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -83,11 +81,11 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Bạn có muốn xóa phòng chiếu: <?=$user['ten_dang_nhap'] ?>
+                                        Bạn có muốn xóa phòng chiếu: <?=$value['ten_phong'] ?>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                        <a class="btn btn-primary" href="index.php?action=deleteCustomer&ma_nguoi_dung=<?=$user['ma_nguoi_dung']?>">Xoá</a>
+                                        <a class="btn btn-primary" href="index.php?action=deleteRoom&ma_phong=<?=$value['ma_phong']?>">Xoá</a>
                                     </div>
                                 </div>
                             </div>

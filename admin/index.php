@@ -5,6 +5,7 @@ include '../models/adminModel/phimModel.php';
 include '../models/adminModel/dashboardModel.php';
 include '../models/adminModel/orderModel.php';
 include '../models/adminModel/accountModel.php';
+include '../models/adminModel/roomModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -25,7 +26,7 @@ switch ($action) {
 
     // list
     case 'listRoom':
-        echo "<h1>Room</h1>";
+        $listRoom=allRoom();
         include 'room/listRoom.php';
         break;
     case 'listProduct':
@@ -61,6 +62,13 @@ switch ($action) {
 
     //add
     case 'addRoom':
+        if($_SERVER['REQUEST_METHOD']=="POST"){
+            $ma_phong=addRoom($_POST['ten_phong'],$_POST['so_luong_ghe']);
+            for ($i=1;$i<=$_POST['so_luong_ghe'];$i++){
+                addGhe($i,$ma_phong);
+            }
+            header("location:index.php?action=listRoom");
+        }
         include 'room/addRoom.php';
         break;
     case 'addProduct':
@@ -104,6 +112,11 @@ switch ($action) {
 
     //edit
     case 'editRoom':
+        $phong=getRoomById($_GET['ma_phong']);
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            editRoom($_GET['ma_phong'],$_POST['ten_phong']);
+        }
+        header("location:index.php?action=listRoom");
         include 'room/editRoom.php';
         break;
     case 'editProduct':
@@ -194,6 +207,8 @@ switch ($action) {
 
     // Delete
     case 'deleteRoom':
+        deleteRoom($_GET['ma_phong']);
+        header("location:index.php?action=listRoom");
         break;
     case 'deleteCustomer':
         deleteAccount($_GET['ma_nguoi_dung']??0);

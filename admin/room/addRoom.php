@@ -26,14 +26,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý tài khoản</h1>
+                <h1>Quản lý phòng chiếu</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="">Danh sách tài khoản</a>
+                        <a href="">Danh sách phòng chiếu</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Thêm tài khoản</a>
+                        <a class="active" href="#">Thêm phòng chiếu</a>
                     </li>
                 </ul>
             </div>
@@ -46,30 +46,23 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Thêm tài khoản</h3>
+                    <h3>Thêm phòng chiếu</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser(this)" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label onclick="" for="" class="form-label">Tên đăng nhập</label>
-                        <input type="text" class="form-control last blurinp" name="ten_dang_nhap">
+                        <label onclick="" for="" class="form-label">Tên phòng</label>
+                        <input type="text" class="form-control last blurinp" name="ten_phong">
                         <small class="error er_lastname"></small>
                     </div>
                     <div class="form-group">
-                        <label for="" class="form-label">Email</label>
-                        <input type="text" class="form-control email blurinp" name="email">
+                        <input type="hidden" class="form-control blurinp" name="so_luong_ghe" value="60">
                         <small class="error er_email"></small>
                     </div>
                     <div class="form-group">
-                        <label for="" class="form-label">Mật khẩu</label>
-                        <input type="text" class="form-control password blurinp" name="mat_khau">
-                        <small class="error er_pass"></small>
-                    </div>
-
-                    <div class="form-group">
-                        <input class="btn btn-primary" type="submit" name="addUser" value="Thêm tài khoản">
-                        <a href="index.php?action=listCustomer" class="btn btn-dark">Danh sách</a>
+                        <input class="btn btn-primary" type="submit" name="addUser" value="Thêm phòng chiếu">
+                        <a href="index.php?action=listRoom" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>
