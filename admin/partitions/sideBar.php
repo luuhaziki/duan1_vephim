@@ -35,6 +35,12 @@
                 <span class="text">Quản lí đặt vé</span>
             </a>
         </li>
+        <li class="<?=$action=='listRoom' || $action=='addRoom'|| $action=='editRoom' ?'active':''?>">
+            <a href="index.php?action=listRoom">
+                <i class='bx bxs-shopping-bag-alt'></i>
+                <span class="text">Quản lý phòng chiếu</span>
+            </a>
+        </li>
     </ul>
     <ul class="side-menu px-0">
         <li>

@@ -4,6 +4,7 @@ include '../models/adminModel/categoryModel.php';
 include '../models/adminModel/phimModel.php';
 include '../models/adminModel/dashboardModel.php';
 include '../models/adminModel/orderModel.php';
+include '../models/adminModel/accountModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -23,6 +24,10 @@ switch ($action) {
         break;
 
     // list
+    case 'listRoom':
+        echo "<h1>Room</h1>";
+        include 'room/listRoom.php';
+        break;
     case 'listProduct':
         $listProduct = listProduct();
         include 'product/listProduct.php';
@@ -38,27 +43,26 @@ switch ($action) {
         include 'order/listOrder.php';
         break;
 
-    case 'listOrder_detail':
-       
-        include 'order/listOrder_detail.php';
-        break;
+
     case 'listComment_statistical':
-        
         include 'comment/listComment_statistical.php';
         break;
     case 'listComment':
         $product_id=$_GET['product_id']??0;
-       
+
         include 'comment/listComment.php';
         break;
 
     case 'listCustomer':
-       
+        $allCustomer=allAccount();
         include 'customer/listCustomer.php';
         break;
 
 
     //add
+    case 'addRoom':
+        include 'room/addRoom.php';
+        break;
     case 'addProduct':
         if (isset($_POST['addProduct'])) {
             $filename = time() . basename($_FILES['image']['name']);
@@ -89,16 +93,8 @@ switch ($action) {
 
     case 'addCustomer':
         if (isset($_POST['addUser'])) {
-            $path = "../public/upload/image/user/";
-            move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
-            // addData('users', [
-            //     'firth_name' => $_POST['firth_name'],
-            //     'last_name' => $_POST['last_name'],
-            //     'user_image' => $_FILES['user_image']['name'],
-            //     'email' => $_POST['email'],
-            //     'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
-            //     'phone' => $_POST['phone'],
-            // ]);
+            print_r($_POST);
+            addAccount($_POST['ten_dang_nhap'],$_POST['mat_khau'],$_POST['email']);
             header("location: index.php?action=listCustomer");
         }
         
@@ -107,6 +103,9 @@ switch ($action) {
 
 
     //edit
+    case 'editRoom':
+        include 'room/editRoom.php';
+        break;
     case 'editProduct':
         if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $idProduct = $_GET['id_product'];
@@ -184,34 +183,22 @@ switch ($action) {
         break;
 
     case 'editCustomer':
-        // $user = getDataBy('users', [
-        //     'user_id' => $_GET['user_id']
-        // ]);
-
-        // if (isset($_POST['firth_name'])) {
-        //     $path = "../public/upload/image/user/";
-        //     move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
-        //     updateData('users', [
-        //         'firth_name' => $_POST['firth_name'],
-        //         'last_name' => $_POST['last_name'],
-        //         'user_image' => $_FILES['user_image']['name'] !='' ? $_FILES['user_image']['name']:  $user['user_image'],
-        //         'email' => $_POST['email'],
-        //         'password' => $_POST['password']==$user['password']?$_POST['password']:password_hash($_POST['password'],PASSWORD_DEFAULT),
-        //         'phone' => $_POST['phone'],
-        //     ], "user_id=" . $_GET['user_id']);
-        //     header("location: index.php?action=listCustomer");
-        // }
+        $user=getAccById($_GET['ma_nguoi_dung']);
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            updateAccount($_GET['ma_nguoi_dung'],$_POST['ten_dang_nhap'],$_POST['mat_khau'],$_POST['email']);
+            header("location:index.php?action=listCustomer");
+        }
 
         include 'customer/editCustomer.php';
         break;
 
     // Delete
+    case 'deleteRoom':
+        break;
     case 'deleteCustomer':
-        // deleteData("users", "user_id=" . $_GET['user_id']);
+        deleteAccount($_GET['ma_nguoi_dung']??0);
         header("location:index.php?action=listCustomer");
         break;
-
-
     case 'deleteProduct':
         if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $idProduct = $_GET['id_product'];
@@ -241,7 +228,6 @@ switch ($action) {
         break;
 
     //other
-    case 'order_detail':
 
 
     default:

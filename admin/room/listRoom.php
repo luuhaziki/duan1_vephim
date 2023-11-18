@@ -26,14 +26,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý tài khoản</h1>
+                <h1>Quản lý phòng chiếu</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Quản lí tài khoản</a>
+                        <a href="#">Quản lí phòng chiếu</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Danh sách tài khoản</a>
+                        <a class="active" href="#">Danh sách phòng chiếu</a>
                     </li>
                 </ul>
             </div>
@@ -47,12 +47,12 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Danh sách khách hàng</h3>
+                    <h3>Danh sách phòng chiếu</h3>
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
                 <div class="alert alert-primary add__btn__click">
-                    <a class="btn btn-primary w100hz" href="index.php?action=addCustomer">Thêm tài khoản</a>
+                    <a class="btn btn-primary w100hz" href="index.php?action=addCustomer">Thêm phòng chiếu</a>
                 </div>
                 <table>
                     <thead>
@@ -79,12 +79,12 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Xóa phòng chiếu</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                <div class="modal-body">
-                                    Bạn có muốn xóa tài khoản: <?=$user['ten_dang_nhap'] ?>
-                                </div>
+                                    <div class="modal-body">
+                                        Bạn có muốn xóa phòng chiếu: <?=$user['ten_dang_nhap'] ?>
+                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                                         <a class="btn btn-primary" href="index.php?action=deleteCustomer&ma_nguoi_dung=<?=$user['ma_nguoi_dung']?>">Xoá</a>
