@@ -91,8 +91,8 @@
                         <small></small>
                     </div>
                     <div class="form-group">
-                        <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
-                        <a href="index.php?action=listCus" class="btn btn-dark">Danh sách</a>
+                        <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm phim">
+                        <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>
