@@ -1,3 +1,9 @@
+<style>
+    .lichChieu{
+        margin: 10px 0;
+        gap: 20px;
+    }
+</style>
 <!-- CONTENT -->
 <section id="content">
     <!-- NAVBAR -->
@@ -90,9 +96,21 @@
                         <input type="text" class="form-control" name="thoigian">
                         <small></small>
                     </div>
+                    <div class="list_lichChieu d-flex flex-column">
+                        <label for="">Lịch chiếu</label>
+                        <div class="lichChieu">
+                            <input type="datetime-local" class="form-control my-1">
+                        </div>
+                    </div>
                     <div class="form-group">
+<<<<<<< HEAD
                         <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm phim">
                         <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
+=======
+                        <input class="btn btn-success btnAddLc" type="button" value="Thêm lịch chiếu">
+                        <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
+                        <a href="index.php?action=listCus" class="btn btn-dark">Danh sách</a>
+>>>>>>> e63108fd76695579f5d1c44b98f8e84bba128df0
                     </div>
                 </form>
             </div>
@@ -100,6 +118,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js"></script>
-<script src="../public/js/script.js"></script>
+<script src="../public/js/product.js"></script>
+<!--<script src="../public/js/script.js"></script>-->
 <!-- CONTENT -->

@@ -3,7 +3,7 @@
         $sql = "INSERT INTO phim (`ten_phim`,`image_phim`,`ngay_phat_hanh`,`dao_dien`,`thoi_luong_phut`,`ma_theloai`)
         VALUES ('$tenphim','$image','$date','$daodien','$thoigian','$theloai')";
         // die($sql);
-        pdo_execute($sql);
+        return pdo_execute_returnLastInsertId($sql);
     }
 
     function listProduct() {
@@ -20,7 +20,7 @@
                 FROM 
                     phim
                 INNER JOIN
-                    theloai ON phim.ma_phim = theloai.ma_theloai WHERE 1 ORDER BY phim.ma_phim DESC;
+                    theloai ON phim.ma_theloai = theloai.ma_theloai WHERE 1 ORDER BY phim.ma_phim DESC;
                 ";
         $result = pdo_query($sql);
         return $result;
@@ -58,6 +58,22 @@
     // Delete Sản Phẩm
     function deleteProduct($id) {
         $sql = "DELETE FROM phim WHERE ma_phim = '$id'";
+        pdo_execute($sql);
+    }
+    function addLichChieu($ma_phim,$thoi_gian_chieu){
+        $sql="INSERT INTO suatchieu(ma_phim,thoi_gian_chieu) VALUES ('$ma_phim','$thoi_gian_chieu')";
+        pdo_execute($sql);
+    }
+    function allLichChieu($ma_phim){
+        $sql="SELECT * FROM suatchieu WHERE ma_phim=$ma_phim";
+        return pdo_query($sql);
+    }
+    function deleteLichChieu($ma_lich_chieu){
+        $sql="DELETE FROM suatchieu WHERE ma_suat_chieu=$ma_lich_chieu";
+        pdo_execute($sql);
+    }
+    function updateLichChieu($ma_lich_chieu,$thoi_gian_chieu){
+        $sql="UPDATE suatchieu SET thoi_gian_chieu='$thoi_gian_chieu' WHERE ma_suat_chieu=$ma_lich_chieu";
         pdo_execute($sql);
     }
 

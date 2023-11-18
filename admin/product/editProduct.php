@@ -1,3 +1,9 @@
+<style>
+    .lichChieu {
+        margin: 10px 0;
+        gap: 20px;
+    }
+</style>
 <!-- CONTENT -->
 <section id="content">
     <!-- NAVBAR -->
@@ -60,25 +66,27 @@
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
                         <input type="file" id="imageInput" class="upFile form-control" name="image">
-                        <input type="hidden" id="imageInput" class="upFile form-control" value="<?= $productInfo['image_phim'] ?>" name="oldImage">
+                        <input type="hidden" id="imageInput" class="upFile form-control"
+                               value="<?= $productInfo['image_phim'] ?>" name="oldImage">
                     </div>
                     <div class="product__images">
-                        
+
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ngày phát hành</label>
-                        <input type="date" class="form-control" name="date" value="<?= $productInfo['ngay_phat_hanh'] ?>">
+                        <input type="date" class="form-control" name="date"
+                               value="<?= $productInfo['ngay_phat_hanh'] ?>">
                         <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Thể loại</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php
-                                foreach($listCategory as $key) {
-                                    ?>
-                                        <option value="<?= $key['ma_theloai'] ?>" <?= $key['ma_theloai'] == $productInfo['ma_theloai'] ? 'selected' : '' ?>><?= $key['ten_theloai'] ?></option>
-                                    <?php                    
-                                }
+                            foreach ($listCategory as $key) {
+                                ?>
+                                <option value="<?= $key['ma_theloai'] ?>" <?= $key['ma_theloai'] == $productInfo['ma_theloai'] ? 'selected' : '' ?>><?= $key['ten_theloai'] ?></option>
+                                <?php
+                            }
                             ?>
                         </select>
                     </div>
@@ -89,10 +97,26 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Thời lượng phim</label>
-                        <input type="text" class="form-control" value="<?= $productInfo['thoi_luong_phut'] ?>" name="thoigian">
+                        <input type="text" class="form-control" value="<?= $productInfo['thoi_luong_phut'] ?>"
+                               name="thoigian">
                         <small></small>
                     </div>
+                    <div class="list_lichChieu d-flex flex-column">
+                        <label for="">Lịch chiếu</label>
+                        <?php foreach ($lichChieu as $key => $value): ?>
+                            <input type="hidden" value="<?=$value['ma_suat_chieu']?>" name="ma_suat_chieu[]">
+                            <div class="lichChieu d-flex">
+                                <input type="datetime-local" class="form-control" value="<?=$value['thoi_gian_chieu']?>" name="lich_chieu[]">
+                                <?php if ($key > 0): ?>
+                                    <input onclick="deleteLc(this)" type="button" class="btn btn-sm btn-danger"
+                                           value="Xoá">
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
                     <div class="form-group">
+                        <input class="btn btn-success btnAddLc" type="button" value="Thêm lịch chiếu">
                         <input class="btn btn-primary" type="submit" name="updatePro" value="Cập nhật phim">
                         <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
                     </div>
@@ -102,6 +126,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js"></script>
-<script src="../public/js/script.js"></script>
+<script src="../public/js/product.js"></script>
+<!--<script src="../public/js/script.js"></script>-->
 <!-- CONTENT -->
