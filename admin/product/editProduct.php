@@ -79,6 +79,10 @@
                         <small></small>
                     </div>
                     <div class="form-group">
+                        <label for="" class="form-label">Mô tả</label>
+                        <textarea class="form-control" name="mota" placeholder="Nhập mô tả phim..."><?= $productInfo['mo_ta'] ?></textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Thể loại</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php

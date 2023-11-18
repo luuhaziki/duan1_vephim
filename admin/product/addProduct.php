@@ -59,7 +59,7 @@
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Tên phim</label>
-                        <input type="text" name="tenphim" class="form-control">
+                        <input type="text" name="tenphim" class="form-control" placeholder="Tên phim...">
                         <small></small>
                     </div>
                     <div class="form-group">
@@ -75,6 +75,10 @@
                         <small></small>
                     </div>
                     <div class="form-group">
+                        <label for="" class="form-label">Mô tả</label>
+                        <textarea class="form-control" name="mota" placeholder="Nhập mô tả phim..."></textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Thể loại</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php
@@ -88,12 +92,12 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Đạo diễn</label>
-                        <input type="text" class="form-control" name="daodien">
+                        <input type="text" class="form-control" name="daodien" placeholder="Đạo diễn...">
                         <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Thời lượng phim</label>
-                        <input type="text" class="form-control" name="thoigian">
+                        <input type="text" class="form-control" name="thoigian" placeholder="Thời lượng phim...">
                         <small></small>
                     </div>
                     <div class="list_lichChieu d-flex flex-column">

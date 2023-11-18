@@ -3,7 +3,7 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Sản phẩm</a>
+        <a href="#" class="nav-link">Phim</a>
         <form action="#">
             <div class="form-input">
                 <input type="search" placeholder="Tìm kiếm">
@@ -26,14 +26,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý sản phẩm</h1>
+                <h1>Quản lý phim</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Quản lí sản phẩm</a>
+                        <a href="#">Quản lí phim</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Danh sách sản phẩm</a>
+                        <a class="active" href="#">Danh sách phim</a>
                     </li>
                 </ul>
             </div>
@@ -46,12 +46,12 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Danh sách sản phẩm</h3>
+                    <h3>Danh sách phim</h3>
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
                 <div class="alert alert-primary add__btn__click">
-                    <a class="btn btn-primary w100hz" href="index.php?action=addProduct">Thêm sản phẩm</a>
+                    <a class="btn btn-primary w100hz" href="index.php?action=addProduct">Thêm phim</a>
                 </div>
                 <table class="tbl__tab">
                     <thead>
@@ -95,7 +95,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Bạn có muốn xóa sản phẩm: <?= $valueSanpham['ten_phim'] ?>
+                                                Bạn có muốn xóa phim: <?= $valueSanpham['ten_phim'] ?>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
