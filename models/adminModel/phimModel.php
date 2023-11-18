@@ -1,7 +1,7 @@
 <?php
-    function insert__phim($tenphim,$image,$date,$daodien,$thoigian,$theloai) {
-        $sql = "INSERT INTO phim (`ten_phim`,`image_phim`,`ngay_phat_hanh`,`dao_dien`,`thoi_luong_phut`,`ma_theloai`)
-        VALUES ('$tenphim','$image','$date','$daodien','$thoigian','$theloai')";
+    function insert__phim($tenphim,$image,$date,$mota,$daodien,$thoigian,$theloai) {
+        $sql = "INSERT INTO phim (`ten_phim`,`image_phim`,`ngay_phat_hanh`,`mo_ta`,`dao_dien`,`thoi_luong_phut`,`ma_theloai`)
+        VALUES ('$tenphim','$image','$date','$mota','$daodien','$thoigian','$theloai')";
         // die($sql);
         return pdo_execute_returnLastInsertId($sql);
     }
@@ -32,6 +32,7 @@
                     phim.ten_phim,
                     phim.image_phim,
                     phim.ngay_phat_hanh,
+                    phim.mo_ta,
                     phim.dao_dien,
                     phim.thoi_luong_phut,
                     phim.ma_theloai,
@@ -48,8 +49,8 @@
 
 
     // Update sản phẩm
-    function updateProduct($id,$tenphim,$image,$date,$daodien,$thoigian,$theloai) {
-        $sql = "UPDATE phim SET ten_phim='".$tenphim."',image_phim='".$image."',ngay_phat_hanh='".$date."',dao_dien='".$daodien."',thoi_luong_phut='".$thoigian."',ma_theloai='".$theloai."'
+    function updateProduct($id,$tenphim,$image,$date,$mota,$daodien,$thoigian,$theloai) {
+        $sql = "UPDATE phim SET ten_phim='".$tenphim."',image_phim='".$image."',ngay_phat_hanh='".$date."',mo_ta='".$mota."',dao_dien='".$daodien."',thoi_luong_phut='".$thoigian."',ma_theloai='".$theloai."'
             WHERE ma_phim = '$id'";
 
         return pdo_execute($sql);

@@ -65,12 +65,12 @@ switch ($action) {
             $target = "../public/upload/" . $filename;
             move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
-            $ma_phim = insert__phim($_POST['tenphim'],$filename,$_POST['date'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            $ma_phim = insert__phim($_POST['tenphim'],$filename,$_POST['date'],$_POST['mota'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
             foreach ($_POST['lich_chieu'] as $lichChieu){
                 addLichChieu($ma_phim,$lichChieu);
             }
             
-//            header('location: index.php?action=listProduct');
+            header('location: index.php?action=listProduct');
             die;
         }
         include 'product/addProduct.php';
@@ -129,7 +129,7 @@ switch ($action) {
 
             }
 
-            updateProduct($_POST['id'],$_POST['tenphim'],$filename ? $filename : $oldImage,$_POST['date'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            updateProduct($_POST['id'],$_POST['tenphim'],$filename ? $filename : $oldImage,$_POST['date'],$_POST['mota'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
             $maSuatChieu=$_POST['ma_suat_chieu'];
             $suatChieu=$_POST['lich_chieu'];
             $length=9999;
