@@ -10,7 +10,7 @@ function allAccount(){
 function addAccount($ten_dang_nhap,$mat_khau,$email){
     $sql="INSERT INTO `nguoidung` (`ten_dang_nhap`, `mat_khau`, `email`) VALUES 
     ('$ten_dang_nhap', '$mat_khau', '$email')";
-    pdo_execute($sql);
+    return pdo_execute_returnLastInsertId($sql);
 }
 function updateAccount($acc_id,$ten_dang_nhap,$mat_khau,$email){
     $sql="UPDATE nguoidung SET ten_dang_nhap='$ten_dang_nhap',mat_khau='$mat_khau',email='$email' WHERE ma_nguoi_dung=$acc_id";
@@ -19,4 +19,8 @@ function updateAccount($acc_id,$ten_dang_nhap,$mat_khau,$email){
 function deleteAccount($acc_id){
     $sql="DELETE FROM nguoidung WHERE ma_nguoi_dung=$acc_id";
     pdo_execute($sql);
+}
+function login($ten_dang_nhap,$mat_khau){
+    $sql="SELECT * FROM nguoidung WHERE ten_dang_nhap='$ten_dang_nhap' AND mat_khau='$mat_khau'";
+    return pdo_query_one($sql);
 }

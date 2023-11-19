@@ -296,8 +296,14 @@
 				<div class="prs_top_login_btn_wrapper">
 					<div class="prs_animate_btn1">
 						<ul>
-							<li><a href="#" class="button button--tamaya" data-text="sign up" data-toggle="modal" data-target="#myModal"><span>sign up</span></a>
-							</li>
+							<?php if ($nguoi_dung){?>
+                                <li>
+                                    <a class="button button--tamaya" data-text="Đăng xuất" href="index.php?action=dang_xuat">Đăng xuất</a>
+                                </li>
+                            <?php }else{?>
+                                <li><a href="#" class="button button--tamaya" data-text="Đăng nhập" data-toggle="modal" data-target="#myModal"><span>Đăng nhập</span></a>
+                                </li>
+                            <?php }?>
 						</ul>
 					</div>
 				</div>
