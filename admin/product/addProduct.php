@@ -103,7 +103,7 @@
                     <div class="list_lichChieu d-flex flex-column">
                         <label for="">Lịch chiếu</label>
                         <div class="lichChieu">
-                            <input type="datetime-local" class="form-control my-1">
+                            <input type="datetime-local" class="form-control my-1" name="lich_chieu[]">
                         </div>
                     </div>
                     <div class="form-group">
