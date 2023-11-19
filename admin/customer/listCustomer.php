@@ -61,6 +61,7 @@
                         <th>Tên đăng nhập</th>
                         <th>Mật khẩu</th>
                         <th>Email</th>
+                        <th>Role</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,7 @@
                             <td><?=$user['ten_dang_nhap']?></td>
                             <td><?=$user['mat_khau']?></td>
                             <td><?=$user['email']?></td>
+                            <td><?=$user['role']?></td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm" href="index.php?action=editCustomer&ma_nguoi_dung=<?=$user['ma_nguoi_dung']?>">Sửa</a>
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$user['ma_nguoi_dung']?>" class="btn btn-outline-danger btn-sm">Xoá</a>

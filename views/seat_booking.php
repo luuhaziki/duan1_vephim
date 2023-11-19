@@ -88,7 +88,7 @@ Author: Webstrot
                         <div class="st_bt_top_close_btn st_bt_top_close_btn2 float_left"> <a href="#"><i class="fa fa-times"></i></a>
                         </div>
                         <div class="st_seatlay_btn float_left">
-                            <button name="thanhtoan">Thanh toán</button>
+                            <button class="btn_comment" name="thanhtoan">Thanh toán</button>
                         </div>
                     </div>
                 </div>

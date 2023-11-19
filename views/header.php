@@ -9,6 +9,7 @@
 	<meta name="author" content="" />
 	<meta name="MobileOptimized" content="320" />
 	<!--Template style -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/animate.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
@@ -70,7 +71,7 @@
 									</ul>
 								</li>
 								<li class="parent megamenu"><a href="#">Phim</a>
-									<ul class="lg-submenu">
+									<ul class="lg-submenu" style="width: 1165px !important;">
 										<li><a>Popular Hindi Movies</a>
 											<ul class="lg-submenu">
 												<li class="ar_left"><i class="fa fa-film"></i><a href="#">Bajiro Mastani</a>

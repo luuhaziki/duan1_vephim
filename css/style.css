@@ -94,6 +94,25 @@ ul{
     border-radius: 45px;
 }
 
+.noidung_comment {
+	width: 465px;
+	height: 35px;
+	border: none;
+	border-bottom: 2px solid #ccc;
+}
+
+.btn_comment {
+	border: 1px solid transparent;
+    background: #ff1212cf;
+    color: #fff;
+    height: 35px;
+    width: 100px;
+}
+
+.btn_comment:hover {
+	background: #ff121291;
+}
+
 /*-- Preloader css start --*/
 #preloader {
 	    background-color: #ebf2f5;
@@ -509,7 +528,7 @@ a.navbar-brand img { padding-right: 15px; }
 	display: block;
 	width: 100%;
 	text-align: justify;
-	left: 0;
+	left: -52px;
 	right: 0;
 	padding: 15px 15px;
 }

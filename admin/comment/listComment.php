@@ -67,23 +67,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $count=1;
-                    foreach ($comments as $comment):?>
-                    <tr class="tr_td">
-                        <td><?=$count++?></td>
-                        <td>
-                            <div class="pro">
-                                <img src="../public/upload/image/user/<?=$comment['user_image']?>" alt="">
-                                <span><?=$comment['fullName']?></span>
-                            </div>
-                        </td>
-                        <td><?=$comment['content']?></td>
-                        <td><?=$comment['create_at']?></td>
-                        <td>
-                            <a class="btn btn-outline-danger btn-sm" onclick="return confirm('bạn có chắc không')" href="index.php?action=deleteComment&comment_id=<?=$comment['comment_id']?>">Xoá</a>
-                        </td>
-                    </tr>
-                    <?php endforeach;?>
+                        <?php 
+                            foreach($listComment as $key => $comment) {
+                                ?>
+                                    <tr class="tr_td">
+                                        <td><?=$key + 1?></td>
+                                        <td>
+                                            <span><?=$comment['ten_dang_nhap']?></span>
+                                        </td>
+                                        <td><?=$comment['content']?></td>
+                                        <td><?= date('d-m-Y H:i:s', strtotime($comment['create_at'])) ?></td>
+                                        <td>
+                                            <a class="btn btn-outline-danger btn-sm" onclick="return confirm('bạn có chắc không')" href="index.php?action=deleteComment&comment_id=<?=$comment['ma_binh_luan']?>">Xoá</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                            }    
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -92,34 +92,3 @@
     <!-- MAIN -->
 </section>
 <script>
-    function remote(btn, move) {
-        let input = btn.parentElement.parentElement.querySelector("input");
-        if (move === "up") {
-            input.value++;
-        }
-        if (input.value > 0) {
-            if (move === "down") {
-                input.value--;
-            }
-        }
-
-    }
-</script>
-<!-- CONTENT -->
-<!--<div class="btn-block">-->
-<!--    <div class="stepper position-relative">-->
-<!--        <input type="text" value="1">-->
-<!--        <span class="d-flex flex-column position-absolute">-->
-<!--                                    <i onclick="remote(this,'up')" class="fa fa-angle-up"></i>-->
-<!--                                    <i onclick="remote(this,'down')" class="fa fa-angle-down"></i>-->
-<!--                                </span>-->
-<!--    </div>-->
-<!--    <div class="btn_group">-->
-<!--        <a href="">-->
-<!--            <i class="fa fa-refresh"></i>-->
-<!--        </a>-->
-<!--        <a href="">-->
-<!--            <i class="fa-solid fa-xmark"></i>-->
-<!--        </a>-->
-<!--    </div>-->
-<!--</div>-->

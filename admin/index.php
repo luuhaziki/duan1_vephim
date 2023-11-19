@@ -6,6 +6,8 @@ include '../models/adminModel/dashboardModel.php';
 include '../models/adminModel/orderModel.php';
 include '../models/adminModel/accountModel.php';
 include '../models/adminModel/roomModel.php';
+include "../models/adminModel/binhluanModel.php";
+
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -44,12 +46,9 @@ switch ($action) {
         include 'order/listOrder.php';
         break;
 
-
-    case 'listComment_statistical':
-        include 'comment/listComment_statistical.php';
-        break;
     case 'listComment':
-        $product_id=$_GET['product_id']??0;
+        // $comment_id=$_GET['comment_id']??0;
+        $listComment = load_all_binhluan();
 
         include 'comment/listComment.php';
         break;
@@ -205,11 +204,6 @@ switch ($action) {
         include 'customer/editCustomer.php';
         break;
 
-    // Delete
-    // case 'deleteRoom':
-    //     deleteRoom($_GET['ma_phong']);
-    //     header("location:index.php?action=listRoom");
-    //     break;
     case 'deleteCustomer':
         deleteAccount($_GET['ma_nguoi_dung']??0);
         header("location:index.php?action=listCustomer");
@@ -238,11 +232,9 @@ switch ($action) {
         }
     case 'deleteComment':
         $comment_id=$_GET['comment_id']??0;
-        // deleteData('comments','comment_id='.$comment_id);
+        delete_binhluan($comment_id);
         header("Location: ".$_SERVER['HTTP_REFERER']);
         break;
-
-    //other
 
 
     default:

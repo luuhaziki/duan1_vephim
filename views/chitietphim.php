@@ -130,6 +130,49 @@
 								</div>
 							</div>
 						</div>
+						<div class="row" style="margin-top: 20px;">
+							<div class="col-md-12">
+								<div class="tab-content">
+									<div id="home" class="tab-pane active">
+										<div class="st_calender_contant_main_wrapper float_left">
+											<div class="st_calender_row_cont st_calender_row_cont2 st_calender_row_cont_last float_left">
+												<div class="st_calender_asc">
+													<table class="table table-striped">
+														<thead>
+															<tr>
+																<th style="width: 128px;">Người dùng</th>
+																<th style="width: 340px;">Nội dung</th>
+																<th>Ngày bình luận</th>
+															</tr>
+														</thead>
+														<tbody>
+															<?php
+																foreach($load_all_comment as $binhluan) {
+																	?>
+																		<tr>
+																			<td><?= $binhluan['ten_dang_nhap'] ?></td>
+																			<td><?= $binhluan['content'] ?></td>
+																			<td><?= date('d-m-Y', strtotime($binhluan['create_at'])) ?></td>
+																		</tr>
+																	<?php
+																}
+															?>
+														</tbody>
+													</table>
+												</div>
+												<form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+													<div class="box_text__comment">
+														<input type="hidden" name="productid" value="<?= $chitietphim['ma_phim'] ?>">
+														<input type="text" class="noidung_comment" name="noidung" placeholder="Viết bình luận...">
+														<input type="submit" style="margin-left: 21px;" class="btn_comment" name="binhluan">
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>															
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">

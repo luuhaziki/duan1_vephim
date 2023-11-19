@@ -114,7 +114,7 @@ Author: Webstrot
 										<h3>THANH TOÁN</h3>
 										<ul>
 											<li>
-												<button type="submit" name="xacnhan">Xác nhận thanh toán</button>
+												<button type="submit" name="xacnhan" class="btn_comment">Xác nhận thanh toán</button>
 											</li>
 										</ul>
 									</div>

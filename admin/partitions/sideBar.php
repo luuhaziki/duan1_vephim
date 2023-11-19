@@ -41,6 +41,12 @@
                 <span class="text">Quản lý phòng chiếu</span>
             </a>
         </li>
+        <li class="<?=$action=='listComment' || $action == 'listComment_statistical' ?'active':''?>">
+            <a href="index.php?action=listComment">
+                <i class='bx bxs-comment'></i>
+                <span class="text">Quản lí bình luận</span>
+            </a>
+        </li>
     </ul>
     <ul class="side-menu px-0">
         <li>

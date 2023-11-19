@@ -5,6 +5,7 @@
     include "models/pdo.php";
     include "models/userModel/phimModel.php";
     include "models/userModel/theloaiModel.php";
+    include "models/userModel/binhluanModel.php";
 
     // Phim
     $list_theloai = list_theloai();
@@ -76,9 +77,16 @@
                         $chitietphim = chitiet_phim($idPhim);
                         $listtime = list_time_suatchieu($idPhim);
                         $timePage = time_page($_GET['time'] ?? $listtime[0]['ma_suat_chieu']);
+                        $load_all_comment = loadall__comment__Byid($idPhim);
                     } else {
                         $idPhim = "";
                     }
+
+                    if($_SERVER['REQUEST_METHOD'] == "POST") {
+                        insert_binhluan(2,$_POST['productid'],$_POST['noidung']);
+                        header('Location'.$_SERVER['HTTP_REFERER']);
+                    }
+
                     include "views/chitietphim.php";
                     break;
                 case 'home':
