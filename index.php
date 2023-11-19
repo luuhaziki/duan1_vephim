@@ -5,11 +5,9 @@
     include "models/pdo.php";
     include "models/userModel/phimModel.php";
     include "models/userModel/theloaiModel.php";
-<<<<<<< HEAD
     include "models/userModel/binhluanModel.php";
-=======
     include "models/adminModel/accountModel.php";
->>>>>>> 949eb00a2014ecd35d37f0e833f84842ddeb1320
+
 
     $ma_nguoi_dung=$_SESSION['ma_nguoi_dung']??0;
     $nguoi_dung=getAccById($ma_nguoi_dung)??[];
@@ -50,7 +48,7 @@
                     datcho($value);
                 }
 
-                datve(2,$_POST['id_phim'],$_POST['id_chieu'],$_POST['ghe2'],$_POST['quantity']);
+                datve($ma_nguoi_dung,$_POST['id_phim'],$_POST['id_chieu'],$_POST['ghe2'],$_POST['quantity']);
 
                 echo "<script>alert('Đặt vé thành công!')</script>";
                 echo "<script>setTimeout(function() {window.location.href = 'index.php'}, 2000)</script>";
@@ -89,7 +87,7 @@
                     }
 
                     if($_SERVER['REQUEST_METHOD'] == "POST") {
-                        insert_binhluan(2,$_POST['productid'],$_POST['noidung']);
+                        insert_binhluan($ma_nguoi_dung,$_POST['productid'],$_POST['noidung']);
                         header('Location'.$_SERVER['HTTP_REFERER']);
                     }
 
