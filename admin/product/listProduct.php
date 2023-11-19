@@ -58,8 +58,10 @@
                         <tr class="tr_th">
                             <th>STT</th>
                             <th>Tên phim</th>
+                            <th>Giá</th>
                             <th>Thể loại</th>
                             <th>Ảnh</th>
+                            <th>Mô tả</th>
                             <th>Ngày phát hành</th>
                             <th>Đạo diễn</th>
                             <th>Thời lượng phim</th>
@@ -75,10 +77,12 @@
                                     <tr class="tr_td">
                                         <td><?= $keysanpham + 1 ?></td>
                                         <td class="name__product__admin"><?= $valueSanpham['ten_phim'] ?></td>
+                                        <td><?= number_format($valueSanpham['price'], 0, ',', '.') ?></td>
                                         <td><?= $valueSanpham['ten_theloai'] ?></td>
                                         <td class="img__productadd">
                                             <img src="../public/upload/<?= $valueSanpham['image_phim'] ?>" alt="">
                                         </td>
+                                        <td><?= $valueSanpham['mo_ta'] ?></td>
                                         <td><?= date("d-m-Y", strtotime($valueSanpham['ngay_phat_hanh'])) ?></td>
                                         <td><?= $valueSanpham['dao_dien'] ?></td>
                                         <td><?= $valueSanpham['thoi_luong_phut'] ?></td>

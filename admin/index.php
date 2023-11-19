@@ -63,9 +63,8 @@ switch ($action) {
     //add
     case 'addRoom':
         if($_SERVER['REQUEST_METHOD']=="POST"){
-            $ma_phong=addRoom($_POST['ten_phong'],$_POST['so_luong_ghe']);
             for ($i=1;$i<=$_POST['so_luong_ghe'];$i++){
-                addGhe($i,$ma_phong);
+                addGhe($i);
             }
             header("location:index.php?action=listRoom");
         }
@@ -77,7 +76,8 @@ switch ($action) {
             $target = "../public/upload/" . $filename;
             move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
-            $ma_phim = insert__phim($_POST['tenphim'],$filename,$_POST['date'],$_POST['mota'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            $ma_phim = insert__phim($_POST['price'],$_POST['tenphim'],$filename,$_POST['date'],$_POST['mota'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            
             foreach ($_POST['lich_chieu'] as $lichChieu){
                 addLichChieu($ma_phim,$lichChieu);
             }
@@ -110,15 +110,15 @@ switch ($action) {
         break;
 
 
-    //edit
-    case 'editRoom':
-        $phong=getRoomById($_GET['ma_phong']);
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            editRoom($_GET['ma_phong'],$_POST['ten_phong']);
-        }
-        header("location:index.php?action=listRoom");
-        include 'room/editRoom.php';
-        break;
+    // //edit
+    // case 'editRoom':
+    //     $phong=getRoomById($_GET['ma_phong']);
+    //     if($_SERVER['REQUEST_METHOD']=='POST'){
+    //         editRoom($_GET['ma_phong'],$_POST['ten_phong']);
+    //     }
+    //     header("location:index.php?action=listRoom");
+    //     include 'room/editRoom.php';
+    //     break;
     case 'editProduct':
         if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $idProduct = $_GET['id_product'];
@@ -141,7 +141,7 @@ switch ($action) {
 
             }
 
-            updateProduct($_POST['id'],$_POST['tenphim'],$filename ? $filename : $oldImage,$_POST['date'],$_POST['mota'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory']);
+            updateProduct($_POST['price'],$_POST['tenphim'],$filename ? $filename : $oldImage,$_POST['date'],$_POST['mota'],$_POST['daodien'],$_POST['thoigian'],$_POST['selectCategory'],$_POST['id']);
             $maSuatChieu=$_POST['ma_suat_chieu'];
             $suatChieu=$_POST['lich_chieu'];
             $length=9999;
@@ -206,10 +206,10 @@ switch ($action) {
         break;
 
     // Delete
-    case 'deleteRoom':
-        deleteRoom($_GET['ma_phong']);
-        header("location:index.php?action=listRoom");
-        break;
+    // case 'deleteRoom':
+    //     deleteRoom($_GET['ma_phong']);
+    //     header("location:index.php?action=listRoom");
+    //     break;
     case 'deleteCustomer':
         deleteAccount($_GET['ma_nguoi_dung']??0);
         header("location:index.php?action=listCustomer");

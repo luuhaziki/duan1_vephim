@@ -58,38 +58,17 @@
                     <thead>
                     <tr class="tr_th">
                         <th>STT</th>
-                        <th>Tên phòng</th>
-                        <th>Số lượng ghế</th>
+                        <th>Số ghê</th>
+                        <th>Trạng thái</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($listRoom as $keyuser => $value): ?>
                         <tr class="tr_td">
                             <td><?= $keyuser + 1 ?></td>
-                            <td><?=$value['ten_phong']?></td>
-                            <td><?=$value['so_luong_ghe']?></td>
-                            <td>
-                                <a class="btn btn-outline-success btn-sm" href="index.php?action=editRoom&ma_phong=<?=$value['ma_phong']?>">Sửa</a>
-                                <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$value['ma_phong']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
-                            </td>
+                            <td><?=$value['so_ghe']?></td>
+                            <td><?=$value['trang_thai']?></td>
                         </tr>
-                        <div class="modal fade" id="exampleModal<?=$value['ma_phong']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Xóa phòng chiếu</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Bạn có muốn xóa phòng chiếu: <?=$value['ten_phong'] ?>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                        <a class="btn btn-primary" href="index.php?action=deleteRoom&ma_phong=<?=$value['ma_phong']?>">Xoá</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     <?php endforeach; ?>
 
                     </tbody>

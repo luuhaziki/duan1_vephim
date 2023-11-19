@@ -70,13 +70,16 @@
 
                     </div>
                     <div class="form-group">
+                        <label for="" class="form-label">Giá</label>
+                        <input type="text" class="form-control" name="price">
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Ngày phát hành</label>
                         <input type="date" class="form-control" name="date">
-                        <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Mô tả</label>
-                        <textarea class="form-control" name="mota" placeholder="Nhập mô tả phim..."></textarea>
+                        <textarea cols="30" rows="10" class="form-control"  name="mota" placeholder="Nhập mô tả phim..."></textarea>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Thể loại</label>
@@ -103,12 +106,12 @@
                     <div class="list_lichChieu d-flex flex-column">
                         <label for="">Lịch chiếu</label>
                         <div class="lichChieu">
-                            <input type="datetime-local" class="form-control my-1">
+                            <input type="datetime-local" name="lich_chieu[]" class="form-control my-1">
                         </div>
                     </div>
                     <div class="form-group">
                         <input class="btn btn-success btnAddLc" type="button" value="Thêm lịch chiếu">
-                        <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
+                        <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm phim">
                         <a href="index.php?action=listCus" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
@@ -118,5 +121,5 @@
     <!-- MAIN -->
 </section>
 <script src="../public/js/product.js"></script>
-<!--<script src="../public/js/script.js"></script>-->
+<script src="../public/js/script.js"></script>
 <!-- CONTENT -->

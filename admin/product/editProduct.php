@@ -73,6 +73,10 @@
 
                     </div>
                     <div class="form-group">
+                        <label for="" class="form-label">Giá</label>
+                        <input type="text" class="form-control" value="<?= $productInfo['price'] ?>" name="price">
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Ngày phát hành</label>
                         <input type="date" class="form-control" name="date"
                                value="<?= $productInfo['ngay_phat_hanh'] ?>">
@@ -131,5 +135,5 @@
     <!-- MAIN -->
 </section>
 <script src="../public/js/product.js"></script>
-<!--<script src="../public/js/script.js"></script>-->
+<script src="../public/js/script.js"></script>
 <!-- CONTENT -->
