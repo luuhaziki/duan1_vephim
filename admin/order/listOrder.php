@@ -61,7 +61,6 @@
                         <th style="padding-right: 20px">STT</th>
                         <th>Người đặt hàng</th>
                         <th>Giá</th>
-                        <th>Số phòng</th>
                         <th>Số ghế</th>
                         <th>Số vé</th>
                         <th>Tổng cộng</th>
@@ -74,7 +73,6 @@
                             <td style="margin-top: 7px"><?=$key+1?></td>
                             <td><?=$value['ten_dang_nhap']?></td>
                             <td style="color: #ff7d7d;font-weight: 500;"><?=$value['price']?></td>
-                            <td><?=$value['so_phong']?></td>
                             <td><?=$value['so_ghe']?></td>
                             <td><?=$value['so_ve']?></td>
                             <td><?=$value['tong_cong']?></td>

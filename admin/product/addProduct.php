@@ -106,7 +106,11 @@
                     <div class="list_lichChieu d-flex flex-column">
                         <label for="">Lịch chiếu</label>
                         <div class="lichChieu">
+<<<<<<< HEAD
                             <input type="datetime-local" name="lich_chieu[]" class="form-control my-1">
+=======
+                            <input type="datetime-local" class="form-control my-1" name="lich_chieu[]">
+>>>>>>> 3e753a5bb46326a7eb08609a35f0e46c25d6fd88
                         </div>
                     </div>
                     <div class="form-group">
