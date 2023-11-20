@@ -70,7 +70,7 @@
                                value="<?= $productInfo['image_phim'] ?>" name="oldImage">
                     </div>
                     <div class="product__images">
-
+                        <img src="../public/upload/<?= $productInfo['image_phim'] ?>" alt="">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giá</label>
@@ -137,3 +137,29 @@
 <script src="../public/js/product.js"></script>
 <script src="../public/js/script.js"></script>
 <!-- CONTENT -->
+
+<script>
+    document.getElementById('imageInput').addEventListener('change', function (event) {
+        const fileList = event.target.files;
+
+        var removeImg = document.querySelectorAll('.remove_img');
+        for(let i = 0; i < removeImg.length; i++) {
+            removeImg[i].parentElement.remove()
+        }
+        
+        for (let i = 0; i < fileList.length; i++) {
+            const file = fileList[i];
+            if (file.type.startsWith('image/')) {
+                const imgElement = document.createElement('img');
+                imgElement.src = URL.createObjectURL(file);
+                imgElement.classList.add('remove_img')
+
+                const imageContainer = document.createElement('div');
+                imageContainer.appendChild(imgElement);
+
+                document.querySelector('.product__images').appendChild(imageContainer);
+            }
+        }
+
+    });
+</script>

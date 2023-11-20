@@ -9,7 +9,7 @@
 	<meta name="author" content="" />
 	<meta name="MobileOptimized" content="320" />
 	<!--Template style -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 	<link rel="stylesheet" type="text/css" href="css/animate.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
@@ -362,7 +362,7 @@
 								if($nguoi_dung['role'] == 1) {
 									?>
 										<li>
-											<a href="contact.html">ĐĂNG NHẬP ADMIN</a>
+											<a href="admin/index.php">ĐĂNG NHẬP ADMIN</a>
 										</li>
 									<?php
 								} 

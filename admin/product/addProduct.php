@@ -106,11 +106,8 @@
                     <div class="list_lichChieu d-flex flex-column">
                         <label for="">Lịch chiếu</label>
                         <div class="lichChieu">
-<<<<<<< HEAD
                             <input type="datetime-local" name="lich_chieu[]" class="form-control my-1">
-=======
-                            <input type="datetime-local" class="form-control my-1" name="lich_chieu[]">
->>>>>>> 3e753a5bb46326a7eb08609a35f0e46c25d6fd88
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -125,5 +122,30 @@
     <!-- MAIN -->
 </section>
 <script src="../public/js/product.js"></script>
-<script src="../public/js/script.js"></script>
+<!-- <script src="../public/js/script.js"></script> -->
 <!-- CONTENT -->
+<script>
+    document.getElementById('imageInput').addEventListener('change', function (event) {
+        const fileList = event.target.files;
+
+        var removeImg = document.querySelectorAll('.remove_img');
+        for(let i = 0; i < removeImg.length; i++) {
+            removeImg[i].parentElement.remove()
+        }
+        
+        for (let i = 0; i < fileList.length; i++) {
+            const file = fileList[i];
+            if (file.type.startsWith('image/')) {
+                const imgElement = document.createElement('img');
+                imgElement.src = URL.createObjectURL(file);
+                imgElement.classList.add('remove_img')
+
+                const imageContainer = document.createElement('div');
+                imageContainer.appendChild(imgElement);
+
+                document.querySelector('.product__images').appendChild(imageContainer);
+            }
+        }
+
+    });
+</script>

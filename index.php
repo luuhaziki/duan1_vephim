@@ -9,15 +9,36 @@
     include "models/adminModel/accountModel.php";
 
 
-    $ma_nguoi_dung=$_SESSION['ma_nguoi_dung']??0;
-    $nguoi_dung=getAccById($ma_nguoi_dung)??[];
+    $ma_nguoi_dung = $_SESSION['ma_nguoi_dung'] ?? 0;
+    $nguoi_dung = getAccById($ma_nguoi_dung) ?? [];
     // Phim
     $list_theloai = list_theloai();
     $list_phim = list_phim();
 
+    if(isset($_POST['dang_nhap'])){
+        $account=login($_POST['ten_dang_nhap'],$_POST['mat_khau']);
+
+        if($account){
+            $_SESSION['ma_nguoi_dung']=$account['ma_nguoi_dung'];
+            echo "<script>alert('Chào mừng ${account['ten_dang_nhap']}'); window.location.href='index.php'</script>";
+        }
+    }
+    if(isset($_POST['dang_ki'])){
+        if($_POST['mat_khau']==$_POST['mat_khau_nhap_lai']){
+            $ma_nguoi_dung=addAccount($_POST['ten_dang_nhap'],$_POST['mat_khau'],$_POST['email']);
+            $account=getAccById($ma_nguoi_dung);
+            echo "<script>alert('Đăng kí thành công đang đăng nhập')</script>";
+            echo "<script>alert('Chào mừng ${account['ten_dang_nhap']}'); window.location.href='index.php'</script>";
+            $_SESSION['ma_nguoi_dung']=$ma_nguoi_dung;
+        }
+    }
+
     if(isset($_GET['action'])) {
 
         if($_GET['action'] == "seat_booking") {
+            if(!$ma_nguoi_dung) {
+                echo "<script>alert('Bạn cần đăng nhập để đặt vé'); window.location.href='index.php'</script>";
+            }
             if(isset($_GET['id_phim']) && ($_GET['id_phim'] > 0)) {
                 $idPhim = $_GET['id_phim'];
                 $chitietphim = chitiet_phim($idPhim);
@@ -49,7 +70,9 @@
                 }
 
                 datve($ma_nguoi_dung,$_POST['id_phim'],$_POST['id_chieu'],$_POST['ghe2'],$_POST['quantity']);
-
+                // echo "<pre>";
+                // print_r($_POST);
+                // die();
                 echo "<script>alert('Đặt vé thành công!')</script>";
                 echo "<script>setTimeout(function() {window.location.href = 'index.php'}, 2000)</script>";
 
@@ -86,17 +109,16 @@
                         $idPhim = "";
                     }
 
-                    if($_SERVER['REQUEST_METHOD'] == "POST") {
+                    if(isset($_POST['binhluan'])) {
                         insert_binhluan($ma_nguoi_dung,$_POST['productid'],$_POST['noidung']);
-                        header('Location'.$_SERVER['HTTP_REFERER']);
+                        header('Location: index.php?action=chi_tiet_phim&id_phim='.$_GET['id_phim']);
                     }
 
                     include "views/chitietphim.php";
                     break;
                 case 'dang_xuat':
-                    $_SESSION['ma_nguoi_dung']=0;
+                    unset($_SESSION['ma_nguoi_dung']);
                     echo "<script>alert('Đăng xuất thành công'); window.location.href='index.php'</script>";
-
                     break;
             }
         
@@ -105,22 +127,6 @@
 
 
     } else {
-        if(isset($_POST['dang_nhap'])){
-            $account=login($_POST['ten_dang_nhap'],$_POST['mat_khau']);
-            if($account){
-                $_SESSION['ma_nguoi_dung']=$account['ma_nguoi_dung'];
-                echo "<script>alert('Chào mừng ${account['ten_dang_nhap']}'); window.location.href='index.php'</script>";
-            }
-        }
-        if(isset($_POST['dang_ki'])){
-            if($_POST['mat_khau']==$_POST['mat_khau_nhap_lai']){
-                $ma_nguoi_dung=addAccount($_POST['ten_dang_nhap'],$_POST['mat_khau'],$_POST['email']);
-                $account=getAccById($ma_nguoi_dung);
-                echo "<script>alert('Đăng kí thành công đang đăng nhập')</script>";
-                echo "<script>alert('Chào mừng ${account['ten_dang_nhap']}'); window.location.href='index.php'</script>";
-                $_SESSION['ma_nguoi_dung']=$ma_nguoi_dung;
-            }
-        }
         include "views/header.php";
         include "views/slider.php";
         include "views/home.php";

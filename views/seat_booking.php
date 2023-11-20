@@ -104,7 +104,7 @@ Author: Webstrot
                 <div class="st_seat_full_container">
                     <div class="st_seat_lay_economy_wrapper float_left">
                         <div class="screen">
-                            <img style="width: 1164px !important;" src="images/content/screen.png">
+                            <img style="width: 1312px !important;" src="images/content/screen.png">
                         </div>
                     </div>
                     <div style="width: auto;" class="st_seat_lay_economy_wrapper st_seat_lay_economy_wrapperexicutive float_left">

@@ -61,7 +61,7 @@
                             <th>Giá</th>
                             <th>Thể loại</th>
                             <th>Ảnh</th>
-                            <th>Mô tả</th>
+                            <th style="width: 371px;text-align: center !important;">Mô tả</th>
                             <th>Ngày phát hành</th>
                             <th>Đạo diễn</th>
                             <th>Thời lượng phim</th>
@@ -82,7 +82,7 @@
                                         <td class="img__productadd">
                                             <img src="../public/upload/<?= $valueSanpham['image_phim'] ?>" alt="">
                                         </td>
-                                        <td><?= $valueSanpham['mo_ta'] ?></td>
+                                        <td style="text-align: center !important;"><?= $valueSanpham['mo_ta'] ?></td>
                                         <td><?= date("d-m-Y", strtotime($valueSanpham['ngay_phat_hanh'])) ?></td>
                                         <td><?= $valueSanpham['dao_dien'] ?></td>
                                         <td><?= $valueSanpham['thoi_luong_phut'] ?></td>

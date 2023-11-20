@@ -160,13 +160,28 @@
 														</tbody>
 													</table>
 												</div>
-												<form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
-													<div class="box_text__comment">
-														<input type="hidden" name="productid" value="<?= $chitietphim['ma_phim'] ?>">
-														<input type="text" class="noidung_comment" name="noidung" placeholder="Viết bình luận...">
-														<input type="submit" style="margin-left: 21px;" class="btn_comment" name="binhluan">
-													</div>
-												</form>
+												<?php
+													if($nguoi_dung) {
+														?>
+															<form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+																<div class="box_text__comment">
+																	<input type="hidden" name="productid" value="<?= $chitietphim['ma_phim'] ?>">
+																	<input type="text" class="noidung_comment" name="noidung" placeholder="Viết bình luận...">
+																	<input type="submit" style="margin-left: 21px;" class="btn_comment" name="binhluan">
+																</div>
+															</form>
+														<?php
+													}
+												?>
+											</div>
+											<div class="box_text__comment">
+												<?php
+													if(!$nguoi_dung) {
+														?>
+															Bạn cần đăng nhập để có thể sử dụng tính năng bình luận
+														<?php
+													}
+												?>
 											</div>
 										</div>
 									</div>															
